@@ -1,0 +1,146 @@
+<%- contentFor('content'); %>
+<div class="row clearfix">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="card">
+      <div class="header">
+        <h2>
+          LIST COURSES &nbsp; &nbsp;
+          <button type="button" class="btn btn-success btn-lg m-l-15 waves-effect" onclick="view_add_course()">Tambah</button>
+        </h2>
+        <ul class="header-dropdown m-r--5">
+          <li class="dropdown">
+            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              <i class="material-icons">more_vert</i>
+            </a>
+            <ul class="dropdown-menu pull-right">
+              <li><a href="javascript:void(0);">Action</a></li>
+              <li><a href="javascript:void(0);">Another action</a></li>
+              <li><a href="javascript:void(0);">Something else here</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="body table-responsive">
+        <table id="req-list" class="table table-hover">
+          <thead>
+            <tr>
+              <th>Course</th>
+              <th>Mentor</th>
+              <th>Title</th>
+              <th style="text-align: center;">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% data.forEach((row) => { %>
+            <tr>
+              <td><%= row.course %></td>
+              <td><%= row.mentor %></td>
+              <td><%= row.title %></td>
+              <td style="text-align: center;">
+                <div class="icon-button-demo sm">
+                  <button type="button" class="btn bg-light-green btn-circle waves-effect waves-circle waves-float" onclick="call_view_edit_course('<%= row.id %>')">
+                    <i class="material-icons">chat</i>
+                  </button>
+                  <button type="button" class="btn bg-red btn-circle waves-effect waves-circle waves-float" onclick="delcourse('<%= row.id %>')">
+                    <i class="material-icons">delete_forever</i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
+
+
+        <div class="modal fade" id="model-edit-course" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title" id="defaultModalLabel">Detail Data</h4>
+              </div>
+              <div class="modal-body">
+                <form id="frm-edit-course" name="frm-edit-users">
+                  <div class="row clearfix">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <div class="form-line">
+                          <input hidden type="number" name="id1" id="id1">
+                          <input type="text" id="course1" name="course1" class="form-control" placeholder="Courses">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <div class="form-line">
+                          <input type="text" id="mentor1" name="mentor1" class="form-control" placeholder="Mentor">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <div class="form-line">
+                          <input type="text" id="title1" name="title1" class="form-control" placeholder="Title">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-link waves-effect" onclick="update_course()">Update</button>
+                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Close</button>
+              </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="modal fade" id="modal-add-course" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title" id="modal-add-course">Add Course</h4>
+              </div>
+              <div class="modal-body">
+                <form id="frm-add-course" name="frm-add-course">
+                  <div class="row clearfix">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <div class="form-line">
+                          <input hidden type="number" name="id" id="id">
+                          <input type="text" id="course" name="course" class="form-control" placeholder="Course Name">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <div class="form-line">
+                          <input type="text" id="mentor" name="mentor" class="form-control" placeholder="Mentor">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <div class="form-line">
+                          <input type="text" id="title" name="title" class="form-control" placeholder="title">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-link waves-effect" onclick="do_action_save_course()">Save</button>
+                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Close</button>
+              </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
